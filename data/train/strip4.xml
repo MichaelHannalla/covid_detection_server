@@ -1,0 +1,26 @@
+<annotation>
+	<folder>all_data</folder>
+	<filename>strip4.jpeg</filename>
+	<path>/home/michaelhannalla/freelancing/covid_detection_server/data/all_data/strip4.jpeg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>223</width>
+		<height>754</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>strip</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>73</xmin>
+			<ymin>259</ymin>
+			<xmax>149</xmax>
+			<ymax>457</ymax>
+		</bndbox>
+	</object>
+</annotation>
