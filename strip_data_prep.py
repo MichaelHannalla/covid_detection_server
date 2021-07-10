@@ -1,3 +1,8 @@
+# File: strip_data_prep.py
+# Author: @MichaelHannalla
+# Project: Trurapid COVID-19 Strips Detection Server with Python
+# Description: Python file for preparing the small strip crop dataset to train the classifier
+
 from detecto.core import Model
 from detecto.utils import read_image
 from detecto.visualize import plot_prediction_grid
