@@ -15,6 +15,7 @@ This repository is a Python project for TRURAPID COVID strip test detection and 
 
  1. Give permissions the main shell script to be executable by `chmod +x run_server.sh`
  2. Run by `./run_server.sh`
+ 3. Go to your browser into `localhost:5000` to open the main web page and test the project
 
 ## Models Training
 ~COMING SOON
