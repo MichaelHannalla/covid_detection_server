@@ -44,7 +44,7 @@ def main():
         running_loss = 0
 
         images, labels = trainloader
-        # Flatten Fashion-MNIST images into a 784 long vector
+        # Flatten images into a 784 long vector
         images = images.view(images.shape[0], -1)
         
         # Training pass
