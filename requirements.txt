@@ -6,3 +6,4 @@ flask
 torch
 torchvision
 detecto
+flask_socketio

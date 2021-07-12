@@ -17,6 +17,7 @@ from datetime import datetime
 
 from PIL import Image
 from flask import Flask, render_template, request, redirect, url_for, abort, flash, session
+from flask_socketio import SocketIO
 from werkzeug.utils import secure_filename
 
 from detecto.core import Dataset, Model
@@ -29,6 +30,7 @@ app.config['UPLOAD_EXTENSIONS'] = ['.jpg', '.png', '.gif', 'jpeg']
 app.config['UPLOAD_PATH'] = 'uploads'
 os.environ['FLASK_APP'] = 'covid_detection_server'
 os.environ['FLASK_ENV'] = 'development'
+socketio = SocketIO(app)
 
 # Load the deep learning models
 print("SERVER LOADING, PLEASE WAIT....")
@@ -96,4 +98,5 @@ def upload_files():
     return redirect(url_for('index'))
 
 if __name__ == "__main__":
-    app.run('0.0.0.0', debug=True) # Run the flask web-server
+    #app.run('0.0.0.0', debug=True) # Run the flask web-server
+    socketio.run(app, host='0.0.0.0', port=int(5000))
