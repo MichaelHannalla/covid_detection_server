@@ -9,12 +9,17 @@ import numpy as np
 import torch
 from PIL import Image
 
+from scipy.signal import savgol_filter
+
 #TODO: using config files instead of variables
 labels = ['strip']
 crop_size = [784, 256]
 input_layer_dim = crop_size[1] * crop_size[0] * 3
 positive = 0
 negative = 1
+savgol_window = 25
+grad_thresh = 0.5
+
 
 def get_image_data(uploaded_file):
     '''
@@ -39,6 +44,13 @@ def get_crop(img, box):
     xmin, ymin, xmax, ymax = box.numpy().astype(np.uint64)
     crop = img[ymin:ymax, xmin:xmax, :]
     return crop
+
+def negate_image(img):
+    '''
+        Function to return the negative of an image
+    '''
+    neg = 255 - img
+    return neg
 
 def strip_dataloader(path):
     '''
@@ -90,7 +102,6 @@ def get_image_tensor(img):
 def get_label_from_onehot(onehot_tensor):
     '''
         Converts from one-hot encoding to sparse encoding
-
     '''
     onehot_np = onehot_tensor.numpy().reshape(-1)
     label = np.argmax(onehot_np)
@@ -111,6 +122,26 @@ def classify_crop(crop_img, model):
     predicted_label = get_label_from_onehot(result)
     return predicted_label
 
+def classical_classify_crop(crop_img):
+    '''
+        Suplementary function to classify crop (desired area of a test sample)
+        Inputs:
+            crop_img : image as numpy array
+        Output:
+            predicted_label : label in sparse encoding
+    '''
+    crop_img = cv2.cvtColor(crop_img, cv2.COLOR_BGR2GRAY)     # convert to grayscale
+    crop_img = negate_image(crop_img)                       
+    intensities_vec = crop_img[:, crop_img.shape[1]//2]              
+    intensities_vec = savgol_filter(intensities_vec, savgol_window, 2)     # second order savistky-golay filter with 25 window size
+    grad_vec = np.gradient(intensities_vec)
+    grad_vec[np.absolute(grad_vec) < grad_thresh] = 0
+    grad_positive_part_of_interest = grad_vec[len(grad_vec)//2: int(3 * len(grad_vec)//4)]
+    if np.any(np.absolute(grad_positive_part_of_interest) > 0):
+        return positive
+    else:
+        return negative
+
 def get_strip_crop(img, model):
     '''
         Main function to detect crop area (desired area of a test sample)
@@ -123,3 +154,9 @@ def get_strip_crop(img, model):
     labels, boxes, scores = model.predict(img)
     cropped = get_crop(img, boxes[0])
     return cropped
+
+def null_func(none):
+    '''
+        Null function for OpenCV functions
+    '''
+    pass

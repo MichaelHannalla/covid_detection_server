@@ -16,7 +16,7 @@ def main():
                    gamma=0.2, lr_step_size=5, verbose=True)
 
     
-    model.save('models/covid_strip_weights_single_class.pth')
+    model.save('models/strip_detector_weights_pass2.pth')
 
 if __name__ == "__main__":
     main()

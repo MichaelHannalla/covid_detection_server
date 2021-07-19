@@ -12,7 +12,7 @@ import cv2
 
 def main():
 
-    model = Model.load('models/covid_strip_weights_single_class.pth', ['strip'])
+    model = Model.load('models/strip_detector_weights_pass2.pth', ['strip'])
     negative1 = read_image('data/test/strip11.jpeg')
     positive1 = read_image('data/test/strip21.jpeg')
     positive2 = read_image('data/test/strip41.jpeg')

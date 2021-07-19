@@ -7,8 +7,9 @@
 
 import imghdr
 import os
+import cv2
 
-from utils import classify_crop, get_strip_crop, get_image_data
+from utils import classify_crop, get_strip_crop, get_image_data, classical_classify_crop
 from utils import positive, negative, labels
 
 import torch
@@ -35,8 +36,8 @@ socketio = SocketIO(app)
 # Load the deep learning models
 print("SERVER LOADING, PLEASE WAIT....")
 global strip_detection_model, strip_classifier_model
-strip_detection_model = Model.load('models/covid_strip_weights_single_class.pth', labels)
-strip_classifier_model = torch.load('models/strip_classifier_mini.pth')
+strip_detection_model = Model.load('models/strip_detector_weights_pass2.pth', labels)
+strip_classifier_model = torch.load('models/strip_classifier_mini.pth')    # not used now, just being loaded in early versions of code
 strip_classifier_model.eval()
 print("SERVER READY")
 
@@ -89,7 +90,7 @@ def upload_files():
             send_string_output("Recieved an input, proceeding to processing")
             img_cv = get_image_data(uploaded_file)                              # Get image from flask server
             strip_crop = get_strip_crop(img_cv, strip_detection_model)          # Get area of interest (strip area)
-            result = classify_crop(strip_crop, strip_classifier_model)          # Classify the sample
+            result = classical_classify_crop(strip_crop)                        # Classify the sample
             send_output(result)                                                 # Send the output to flask server
         except:
             flash("Exception caught during runtime, check for invalid inputs")

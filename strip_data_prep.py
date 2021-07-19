@@ -17,7 +17,7 @@ def main():
     data_path = "data/train"
     crop_path = "data/crops"
     data = os.listdir(data_path)
-    model = Model.load('models/covid_strip_weights_single_class.pth', ['strip'])
+    model = Model.load('models/strip_detector_weights_pass2.pth', ['strip'])
 
     for idx, train_img_path in enumerate(data):
         if train_img_path.endswith('.jpeg') or train_img_path.endswith('.jpg'):

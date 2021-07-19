@@ -24,8 +24,10 @@ def main():
     model = nn.Sequential(
                       nn.Linear(input_layer_dim, 512),
                       nn.ReLU(),
+                      nn.Dropout(0.05),
                       nn.Linear(512, 256),
                       nn.ReLU(),
+                      nn.Dropout(0.05),
                       nn.Linear(256, 128),
                       nn.ReLU(),
                       nn.Linear(128, 2),
@@ -86,7 +88,7 @@ def main():
             "Test Accuracy: {:.3f}".format(accuracy/len(testloader)))
 
     
-    torch.save(model, "models/strip_classifier_mini.pth")
+    torch.save(model, "models/strip_classifier_pass2.pth")
 
 if __name__ == "__main__":
     main()

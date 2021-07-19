@@ -1,7 +1,7 @@
 <annotation>
-	<folder>all_data</folder>
+	<folder>train</folder>
 	<filename>strip19.jpeg</filename>
-	<path>/home/michaelhannalla/freelancing/covid_detection_server/data/all_data/strip19.jpeg</path>
+	<path>/home/michaelhannalla/freelancing/covid_detection_server/data/train/strip19.jpeg</path>
 	<source>
 		<database>Unknown</database>
 	</source>
@@ -17,10 +17,10 @@
 		<truncated>0</truncated>
 		<difficult>0</difficult>
 		<bndbox>
-			<xmin>103</xmin>
-			<ymin>340</ymin>
-			<xmax>203</xmax>
-			<ymax>616</ymax>
+			<xmin>122</xmin>
+			<ymin>361</ymin>
+			<xmax>174</xmax>
+			<ymax>588</ymax>
 		</bndbox>
 	</object>
 </annotation>

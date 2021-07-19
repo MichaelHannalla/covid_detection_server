@@ -18,4 +18,9 @@ This repository is a Python project for TRURAPID COVID strip test detection and 
  3. Go to your browser into `localhost:5000` to open the main web page and test the project
 
 ## Models Training
+
+### Training The Strip Detector Model
+~COMING SOON
+
+### Training The Strip Classifier Model
 ~COMING SOON
