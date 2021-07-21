@@ -37,8 +37,8 @@ socketio = SocketIO(app)
 print("SERVER LOADING, PLEASE WAIT....")
 global strip_detection_model, strip_classifier_model
 strip_detection_model = Model.load('models/strip_detector_weights_pass2.pth', labels)
-strip_classifier_model = torch.load('models/strip_classifier_mini.pth')    # not used now, just being loaded in early versions of code
-strip_classifier_model.eval()
+#strip_classifier_model = torch.load('models/strip_classifier_mini.pth')    # not used now, just being loaded in early versions of code
+#strip_classifier_model.eval()
 print("SERVER READY")
 
 def send_string_output(outgoing_string):

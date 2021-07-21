@@ -19,7 +19,7 @@ from scipy.signal import savgol_filter
 def main():
     
     # Load image
-    img = cv2.imread('data/crops/crop32.jpg') 
+    img = cv2.imread('data/doubtful/reader-48.jpg') 
     img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)     # convert to grayscale
     img = negate_image(img)
     
